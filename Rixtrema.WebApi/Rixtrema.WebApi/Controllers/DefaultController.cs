@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Rixtrema.BLL.Handlers.Interfaces;
 
 namespace Rixtrema.WebApi.Controllers
 {
@@ -18,10 +19,12 @@ namespace Rixtrema.WebApi.Controllers
             _logger = logger;
         }
 
+
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<string> Get([FromServices] IPercentileHandler handler, int operationType)
         {
-            return "";
+            var completePercentile = await handler.CompletePercentile(operationType);
+            return completePercentile;
         }
     }
 }

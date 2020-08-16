@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Rixtrema.DAL.EF.Contexts;
 using Rixtrema.DAL.EF.Repositories.Implementations;
 using Rixtrema.DAL.EF.Repositories.Interfaces;
@@ -14,28 +15,50 @@ namespace Rixtrema.DAL.EF.Services.Implementations
 
         private readonly Lazy<DbService> _lazyDbService;
         
+        private readonly IConfiguration _configuration;
 
-        private IPercentileRepository _percentileRepository;
+        private const string ConnectionString = "AppSettings:ConnectionString";
 
+        private const string MaxConnectionRetriesNumber = "AppSettings:DatabaseCustomSettings:MaxConnectionRetriesNumber";
+
+        private const string MaxTimeBetweenRetriesInSeconds = "AppSettings:DatabaseCustomSettings:MaxTimeBetweenRetriesInSeconds";
+        
         private readonly object _locker = new object();
 
         private bool _disposed;
+        
 
-        public DbService(string configuration)
+        private IPercentileRepository _percentileRepository;
+
+        private IStateRepository _stateRepository;
+
+        private IPlansRepository _plansRepository;
+        
+
+        public DbService(IConfiguration configuration)
         {
-            var configuration1 = configuration;
-
+            _configuration = configuration;
             lock (_locker)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<BaseContext>();
-             
-                optionsBuilder.UseSqlServer(configuration1, option =>
-                    option.EnableRetryOnFailure(2, TimeSpan.FromSeconds(30), null));
-                optionsBuilder.UseLazyLoadingProxies(false);
+                try
+                {
+                    optionsBuilder.UseSqlServer(_configuration[ConnectionString], option =>
+                        option.EnableRetryOnFailure(int.Parse(_configuration[MaxConnectionRetriesNumber]),
+                            TimeSpan.FromSeconds(int.Parse(_configuration[MaxTimeBetweenRetriesInSeconds])),
+                            null));
+                    optionsBuilder.UseLazyLoadingProxies(false);
+                }
+                catch
+                {
+                    optionsBuilder.UseSqlServer(_configuration[ConnectionString], option =>
+                        option.EnableRetryOnFailure(2, TimeSpan.FromSeconds(30), null));
+                    optionsBuilder.UseLazyLoadingProxies(false);
+                }
 
                 var db = new BaseContext(optionsBuilder.Options);
                 _db = db;
-                _lazyDbService = new Lazy<DbService>(() => new DbService(configuration1));
+                _lazyDbService = new Lazy<DbService>(() => new DbService(_configuration));
             }
         }
 
@@ -56,6 +79,14 @@ namespace Rixtrema.DAL.EF.Services.Implementations
         public IPercentileRepository Percentile =>
             // ReSharper disable once ConvertToNullCoalescingCompoundAssignment
             _percentileRepository ?? (_percentileRepository = new PercentileRepository(_db));
+        
+        public IStateRepository State =>
+            // ReSharper disable once ConvertToNullCoalescingCompoundAssignment
+            _stateRepository ?? (_stateRepository = new StateRepository(_db));
+        
+        public IPlansRepository Plans =>
+            // ReSharper disable once ConvertToNullCoalescingCompoundAssignment
+            _plansRepository ?? (_plansRepository = new PlansRepository(_db));
 
 
         public void Dispose()

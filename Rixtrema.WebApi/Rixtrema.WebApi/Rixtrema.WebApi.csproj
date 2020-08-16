@@ -4,5 +4,14 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Rixtrema.BLL\Rixtrema.BLL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Alexinea.Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+      <PackageReference Include="Autofac" Version="5.2.0" />
+    </ItemGroup>
+
 
 </Project>

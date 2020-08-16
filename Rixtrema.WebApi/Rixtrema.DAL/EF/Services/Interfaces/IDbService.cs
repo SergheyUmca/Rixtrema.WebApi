@@ -7,7 +7,13 @@ namespace Rixtrema.DAL.EF.Services.Interfaces
     public interface IDbService : IDisposable
     {
         DbService DbServiceInstance { get; }
+        
+        
 
         IPercentileRepository Percentile { get; }
+        
+        IStateRepository State { get; }
+        
+        IPlansRepository Plans { get; }
     }
 }
