@@ -37,8 +37,7 @@ namespace Rixtrema.DAL.EF.Repositories.Implementations
                 {
                     var bulkConfig = new BulkConfig
                     {
-                        PreserveInsertOrder = true, 
-                        SetOutputIdentity = true, 
+                        PreserveInsertOrder = true,
                         BulkCopyTimeout = 0
                     };
                         

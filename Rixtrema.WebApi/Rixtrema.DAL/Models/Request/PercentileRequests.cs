@@ -4,7 +4,7 @@
     {
         public string Type { get; set; }
         
-        public float? Val { get; set; }
+        public double? Val { get; set; }
         
         public int? Perc { get; set; }
         

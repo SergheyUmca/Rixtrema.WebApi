@@ -9,7 +9,7 @@ namespace Rixtrema.DAL.EF.Entities
         public string Type { get; set; }
     
         [Column(TypeName = "real")]
-        public float? Val { get; set; }
+        public double? Val { get; set; }
         
         public int? Perc { get; set; }
         

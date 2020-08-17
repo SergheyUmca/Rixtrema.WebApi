@@ -9,49 +9,49 @@ namespace Rixtrema.DAL.EF.Entities
         public int Id { get; set; }
         
         [Column(TypeName = "real")]
-        public float? Earnings { get; set; }
+        public double? Earnings { get; set; }
         
         [Column("PARTICIPANT_CONTRIB_AMT", TypeName = "real")]
-        public float? ParticipantContribAmt { get; set; }
+        public double? ParticipantContribAmt { get; set; }
         
         [Column("EMPLR_CONTRIB_INCOME_AMT",TypeName = "real")]
-        public float? EmplrContribIncomeAmt { get; set; }
+        public double? EmplrContribIncomeAmt { get; set; }
         
         [Column(TypeName = "real")]
-        public float? ParticswithBal { get; set; }
+        public double? ParticswithBal { get; set; }
         
         [Column(TypeName = "real")]
-        public float? ActPartics { get; set; }
+        public double? ActPartics { get; set; }
         
         [Column(TypeName = "real")]
-        public float? PartRate { get; set; }
+        public double? PartRate { get; set; }
         
         [Column(TypeName = "real")]
-        public float? AvgPartContrib { get; set; }
+        public double? AvgPartContrib { get; set; }
         
         [Column(TypeName = "real")]
-        public float? AvgEmpContrib { get; set; }
+        public double? AvgEmpContrib { get; set; }
         
         [Column(TypeName = "real")]
-        public float? Assets { get; set; }
+        public double? Assets { get; set; }
         
         [Column(TypeName = "real")]
-        public float? Adminexp { get; set; }
+        public double? Adminexp { get; set; }
         
         [Column(TypeName = "real")]
-        public float? AvgBalance { get; set; }
+        public double? AvgBalance { get; set; }
         
         [Column(TypeName = "real")]
-        public float? PartContribRate { get; set; }
+        public double? PartContribRate { get; set; }
         
         [Column(TypeName = "real")]
-        public float? EmpContribIncomeRate { get; set; }
+        public double? EmpContribIncomeRate { get; set; }
         
         [Column(TypeName = "real")]
-        public float? AdminExpRate { get; set; }
+        public double? AdminExpRate { get; set; }
         
         [Column(TypeName = "real")]
-        public float? PercRetirees { get; set; }
+        public double? PercRetirees { get; set; }
     
         [Column("SPONS_DFE_MAIL_STATE", TypeName = "varchar(2)")]
         public string SponsDfeMailState { get; set; }
