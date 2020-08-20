@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rixtrema.DAL", "Rixtrema.DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rixtrema.BLL", "Rixtrema.BLL\Rixtrema.BLL.csproj", "{2C46E66D-01CF-4A46-9E14-031E4534CD04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rixtrema.ConsoleApp", "Rixtrema.ConsoleApp\Rixtrema.ConsoleApp.csproj", "{4E74E5B2-FC0A-4C72-875A-AF51F9CF4543}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{2C46E66D-01CF-4A46-9E14-031E4534CD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C46E66D-01CF-4A46-9E14-031E4534CD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C46E66D-01CF-4A46-9E14-031E4534CD04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E74E5B2-FC0A-4C72-875A-AF51F9CF4543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E74E5B2-FC0A-4C72-875A-AF51F9CF4543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E74E5B2-FC0A-4C72-875A-AF51F9CF4543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E74E5B2-FC0A-4C72-875A-AF51F9CF4543}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
